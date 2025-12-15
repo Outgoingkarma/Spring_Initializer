@@ -3,6 +3,7 @@ package com.example.spring_initializer.controllers;
 import ch.qos.logback.core.net.server.Client;
 import com.example.spring_initializer.model.BasicUser;
 import com.example.spring_initializer.model.Driver;
+import com.example.spring_initializer.model.Restaurant;
 import com.example.spring_initializer.model.User;
 import com.example.spring_initializer.repos.*;
 import com.google.gson.JsonObject;
@@ -20,6 +21,8 @@ public class UserController {
     private DriverRepo driverRepo;
     @Autowired
     private BasicUserRepo basicUserRepo;
+    @Autowired
+    private RestaurantRepo restaurantRepository;
 
 
 
@@ -96,7 +99,10 @@ public class UserController {
         return driverRepo.save(driver);
     }
 
-
+    @GetMapping(value = "/allRestaurants")
+    public @ResponseBody Iterable<Restaurant> getAllRestaurants() {
+        return restaurantRepository.findAll();
+    }
 
 
 

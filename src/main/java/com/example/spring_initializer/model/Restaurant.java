@@ -17,26 +17,29 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Restaurant extends User {
+    String restaurantName;
     private String openTime;
     private String closeTime;
     private int estimatedDeliveryTime;
     private boolean isActive = true;
-    @JsonIgnore
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Review> reviews = new ArrayList<>();
     private int totalReviews = 0;
     private double averageRating = 0.0;
     private double deliveryFee;
+    private String address;
+
+
     @JsonIgnore
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Dishes> dishesMenu = new ArrayList<>();
+    @Transient
+    private String imageURL;
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<FoodOrder> orders = new ArrayList<>();
-    private String address;
-    @Transient
-    private String imageURL;
-    String restaurantName;
+    @JsonIgnore
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Review> reviews = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Dishes> dishesMenu = new ArrayList<>();
 
 
     public Restaurant(String login, String password, String name, String surname, String restaurantName, String phone_number, String email, String address, String openTime, String closeTime) {
