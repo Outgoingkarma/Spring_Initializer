@@ -27,6 +27,8 @@ public class Driver extends User {
         this.isAvailable = isAvailable;
         this.totalDeliveries = totalDeliveries;
     }
+
+
 }
 
 

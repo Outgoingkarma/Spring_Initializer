@@ -37,8 +37,10 @@ public class Dishes {
     @Transient
     private String imageURL;
     private int preparationTime; // in minutes
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Restaurant restaurant;
+    @JsonIgnore
     @ManyToMany(mappedBy = "dishes")
     private List<FoodOrder> orders = new ArrayList<>();
 

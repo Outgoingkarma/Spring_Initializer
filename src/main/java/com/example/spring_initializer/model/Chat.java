@@ -20,6 +20,7 @@ public class Chat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String name;
     private LocalDateTime createdDate = LocalDateTime.now();
     private LocalDateTime lastMessageDate = LocalDateTime.now();
 
@@ -41,4 +42,15 @@ public class Chat {
     @JsonIgnore
     @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<ChatMessage> messages = new ArrayList<>();
+
+    public Chat(String name, FoodOrder foodOrder) {
+        this.name = name;
+        this.order = foodOrder;
+        this.createdDate = LocalDateTime.now();
+        this.lastMessageDate = LocalDateTime.now();
+    }
+    @Override
+    public String toString() {
+        return "Chat: " + name + " created on: " + createdDate + "Messages: " + messages.size();
+    }
 }
